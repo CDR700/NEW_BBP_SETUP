@@ -22,7 +22,7 @@ echo "$bbp_url" > "$folder_name/bbp_infos.txt"
 
 touch "$folder_name/ua.txt"
 cat <<EOL > "$folder_name/ua.txt"
- User-agent : $bbp_ua
+User-agent : $bbp_ua
 EOL
  
 touch "$folder_name/recon.md" 
