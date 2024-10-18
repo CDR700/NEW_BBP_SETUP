@@ -1,0 +1,105 @@
+#!/bin/bash
+# A simple tool i made to assist me in the creation of Bug Bounty programs folders.
+# you need a folder in your home dir, named "BugBounty"
+
+echo "Name of the bbp (avoid spaces) :"
+read bpp_name
+
+echo "Name of the bug bounty platform (no space) can be h1, bc, ywh, etc... :"
+read platform_name
+
+echo "URL of the bbp briefing page :"
+read bbp_url
+
+echo "UA of the bbp :"
+read bbp_ua
+
+folder_name="BugBounty/${platform_name}_${bpp_name}"  
+mkdir -p "$folder_name"
+
+touch "$folder_name/bbp_infos.txt"
+echo "$bbp_url" > "$folder_name/bbp_infos.txt"
+
+touch "$folder_name/ua.txt"
+cat <<EOL > "$folder_name/ua.txt"
+ User-agent : $bbp_ua
+EOL
+ 
+touch "$folder_name/recon.md" 
+cat <<EOL > "$folder_name/recon.md"
+## Recon draft
+EOL
+
+
+# report
+mkdir "$folder_name/reports/" 
+report_file="$folder_name/reports/report_${bpp_name}_00.md"
+touch "$report_file"
+cat <<EOL > "$report_file"
+# Title
+
+## Description
+Hi, there is a vunerability in ... 
+
+## Steps to Reproduce
+
+## POC
+
+screenshots
+
+code snippets
+
+evidences 
+
+## Mitigation
+
+Provide recommendations for how the vulnerability can be fixed.
+
+## Additional Information
+
+Any other relevant information or context.
+
+best regards
+EOL
+
+
+clear
+echo "Target Scopes definition"
+ 
+add_scopes() {
+  local scope_file=$1
+  local scope_type=$2
+  local input
+  local add_more="yes"
+
+  while [[ "$add_more" == "yes" ]]; do
+    echo "Entrez $scope_type (let empty if none) :"
+    read input
+    if [ ! -z "$input" ]; then
+      echo "$input" >> "$scope_file"
+    else
+      break
+    fi
+    echo "add another $scope_type ? (yes/no)"
+    read add_more
+  done
+}
+
+# Ask for scope
+
+echo "add main domains"
+add_scopes "$folder_name/scopes.maindomains.txt" "a main domain scope"
+
+echo "add subdomains"
+add_scopes "$folder_name/scopes.subdomains.txt" "a sub domain scope"
+
+echo "add apis"
+add_scopes "$folder_name/scopes.apis.txt" "an API"
+
+echo "other scopes ?"
+add_scopes "$folder_name/scopes.others.txt" "other scope"
+
+clear
+echo "'$folder_name' project ready, happy hunting!"
+echo "\n"
+cd "$folder_name" && pwd ; ls -la ;  
