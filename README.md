@@ -10,3 +10,12 @@ chmod +x newbbp
 sudo mv newbbp /usr/local/bin/
 
 ```
+
+##### Recon scripts
+newbbp can generate bash scripts to facilitate the recon process
+
+Thoses scripts depends of the presence of discovery tools and the .bashrc
+
+Here is the list of tools used by those scripts :
+
+TODO
