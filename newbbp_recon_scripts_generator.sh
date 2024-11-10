@@ -1,6 +1,7 @@
 #!/bin/bash
 this_dir=$(pwd)
-ua_h=cat "$this_dir/ua.txt"
+ua_h=cat($this_dir/ua.txt)
+
 echo "Building recon scripts and various one-liners"
 sleep 1; 
 
