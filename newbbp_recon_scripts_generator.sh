@@ -1,13 +1,11 @@
 #!/bin/bash
 this_dir=$(pwd)
 
-# Lire le contenu de ua.txt et l'assigner à la variable ua_h
 ua_h=$(<"$this_dir/ua.txt")
 
 echo "Building recon scripts and various one-liners"
 sleep 1
 
-# Créer le script subfinder.wildcards.sh
 touch "$this_dir/subfinder.wildcards.sh"
 chmod +x "$this_dir/subfinder.wildcards.sh"
 cat <<EOL > "$this_dir/subfinder.wildcards.sh"
@@ -18,7 +16,6 @@ cat <<EOL > "$this_dir/subfinder.wildcards.sh"
 subfinder TODO
 EOL
 
-# Créer le script ffuf-subdomain.wildcards.sh
 touch "$this_dir/ffuf-subdomain.wildcards.sh"
 chmod +x "$this_dir/ffuf-subdomain.wildcards.sh"
 cat <<EOL > "$this_dir/ffuf-subdomain.wildcards.sh"
